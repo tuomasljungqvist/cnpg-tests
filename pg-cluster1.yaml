@@ -1,0 +1,55 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-cluster1
+  namespace: cnpg-ns
+spec:
+  logLevel: info
+  startDelay: 36
+  stopDelay: 18
+  nodeMaintenanceWindow:
+    inProgress: false
+    reusePVC: true
+  smartShutdownTimeout: 18
+  backup:
+    target: prefer-standby
+    volumeSnapshot:
+      online: true
+      onlineConfiguration:
+        immediateCheckpoint: false
+        waitForArchive: true
+      snapshotOwnerReference: none
+    retentionPolicy: 07d
+  enableSuperuserAccess: false
+  monitoring:
+    disableDefaultQueries: false
+    enablePodMonitor: true
+    tls:
+      enabled: false
+  minSyncReplicas: 1
+  replicationSlots:
+    highAvailability:
+      enabled: true
+      slotPrefix: _cnpg_
+    synchronizeReplicas:
+      enabled: true
+    updateInterval: 30
+  enablePDB: true
+  primaryUpdateMethod: restart
+  failoverDelay: 0
+  postgresql:
+    synchronous:
+      method: any
+      number: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:14
+  walStorage:
+    resizeInUseVolumes: true
+    size: 1Gi
+  maxSyncReplicas: 2
+  switchoverDelay: 3600
+  storage:
+    resizeInUseVolumes: true
+    size: 1Gi
+  primaryUpdateStrategy: unsupervised
+  instances: 3
+  description: pg-cluster1 from argocd
