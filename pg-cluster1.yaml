@@ -2,15 +2,15 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: pg-cluster1
-  namespace: cnpg-ns
+  namespace: cnpg
 spec:
   logLevel: info
-  startDelay: 36
-  stopDelay: 18
+  startDelay: 10
+  stopDelay: 10
   nodeMaintenanceWindow:
     inProgress: false
     reusePVC: true
-  smartShutdownTimeout: 18
+  smartShutdownTimeout: 10
   backup:
     target: prefer-standby
     volumeSnapshot:
@@ -35,8 +35,8 @@ spec:
       enabled: true
     updateInterval: 30
   enablePDB: true
-  primaryUpdateMethod: restart
-  failoverDelay: 0
+  primaryUpdateMethod: switchover
+  failoverDelay: 10
   postgresql:
     synchronous:
       method: any
@@ -52,4 +52,4 @@ spec:
     size: 1Gi
   primaryUpdateStrategy: unsupervised
   instances: 3
-  description: pg-cluster1 from argocd
+  description: pg-cluster1
