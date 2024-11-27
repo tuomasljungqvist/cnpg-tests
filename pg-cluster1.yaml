@@ -2,7 +2,6 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: pg-cluster1
-  namespace: cnpg
 spec:
   logLevel: info
   startDelay: 10
