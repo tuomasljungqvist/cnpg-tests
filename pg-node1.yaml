@@ -3,7 +3,7 @@ kind: Cluster
 metadata:
   name: cluster-example
 spec:
-  instances: 3
+  instances: 1
   storage:
     size: 1Gi
   enablePDB: false
