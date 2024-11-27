@@ -19,7 +19,7 @@ spec:
         immediateCheckpoint: false
         waitForArchive: true
       snapshotOwnerReference: none
-    retentionPolicy: 07d
+    retentionPolicy: 7d
   enableSuperuserAccess: false
   monitoring:
     disableDefaultQueries: false
