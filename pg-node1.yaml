@@ -1,7 +1,8 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cluster-example
+  name: cluster-example2
+  namespace: cnpg-1
 spec:
   instances: 1
   storage:
